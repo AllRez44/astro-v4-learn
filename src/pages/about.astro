@@ -1,5 +1,30 @@
 ---
+const pageTitle: string = "About Me"
 
+interface Identity {
+  firstName: string;
+  country: string;
+  occupation: string;
+  hobbies: string[];
+}
+
+const identity: Identity = {
+  firstName: "Allan",
+  country: "Brazil",
+  occupation: "Web Developer",
+  hobbies: ["gaming", "music", "reading articles", "podcast listening", "film watching"],
+};
+
+const skills: string[] = ["HTML", "CSS", "JavaScript", "React", "Next", "Astro", "PHP", "Symfony", "Laravel", "MySQL", "Postgres"];
+
+const hobbies = identity.hobbies;
+const randomHobbie1: string = hobbies && hobbies[Math.floor(Math.random() * hobbies.length)];
+hobbies?.splice(hobbies.indexOf(randomHobbie1), 1);
+const randomHobbie2: string = (hobbies && randomHobbie1) && hobbies[Math.floor(Math.random() * hobbies.length)];
+
+const happy = true;
+const finished = false;
+const goal = 3;
 ---
 
 <html lang="en">
@@ -10,8 +35,10 @@
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
+
   <body>
     <a href="/">Home</a>
+		<a href="/blog">Blog</a>
     <a href="/about/">About</a>
     <h1>About Me</h1>
     <h2>... and my new Astro site!</h2>
@@ -25,5 +52,22 @@
       This site will update as I complete more of the tutorial, so keep checking
       back and see how my journey is going!
     </p>
+
+    <p>Here are a few facts about me:</p>
+    <ul>
+      <li> My name is {identity.firstName} and I work as a {identity.occupation}.</li>
+      <li> I live in {identity.country} </li>
+        {identity.hobbies?.length >= 2 && (
+          <li>Two of my hobbies are {randomHobbie1} and {randomHobbie2}</li>
+        )}
+      </li>
+        My skills are: {skills?.join(", ")}
+      </li>
+    </ul>
+    {happy && <p>I am happy to be learning Astro!</p>}
+
+    {finished && <p>I finished this tutorial!</p>}
+
+    {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
   </body>
 </html>
