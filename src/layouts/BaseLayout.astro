@@ -1,0 +1,32 @@
+---
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Title from "../components/Title.astro";
+
+interface Props {
+    pageTitle: string;
+    titleClassName?: string;
+}
+
+const { pageTitle = "Astro", titleClassName } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <slot name="head"/>
+  </head>
+  <body>
+    <Header />
+    <slot name="title">
+      <h1>{pageTitle}</h1>
+    </slot>
+    <slot />
+    <Footer />
+  </body>
+</html>
