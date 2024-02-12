@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogPost from "../../components/BlogPost.astro";
-import { uniqueTags, filteredPosts } from "../../scripts/utils.astro";
+import { getUniqueTags, getFilteredPosts, getAllPosts } from "../../utils.astro";
 
 export async function getStaticPaths() {
-  return uniqueTags.map((tag) => ({ params: { tag }, props: { posts: filteredPosts(tag) } }));
+  const allPosts = await getAllPosts();
+  return getUniqueTags(allPosts).map((tag) => ({ params: { tag }, props: { posts: getFilteredPosts({posts: allPosts, tag}) } }));
 }
 
 const { tag } = Astro.params;

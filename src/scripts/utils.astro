@@ -1,9 +1,0 @@
----
-import type { MarkdownInstance } from "astro";
-
-export const allPosts: MarkdownInstance<Record<string, any>>[] = await Astro.glob('../pages/posts/*.md');
-
-export const uniqueTags = [...new Set(allPosts.map(({ frontmatter: { tags } }) => tags).flat())];
-
-export const filteredPosts = (tag: string) => allPosts.filter(({ frontmatter: { tags } }) => tags.includes(tag));
----

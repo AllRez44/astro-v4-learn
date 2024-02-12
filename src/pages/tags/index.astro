@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { uniqueTags } from "../../scripts/utils.astro"
+import { getAllPosts, getUniqueTags } from "../../utils.astro"
 
+const allPosts = await getAllPosts()
+const tags = getUniqueTags(allPosts)
 const pageTitle = "Tags"
 ---
 
@@ -26,7 +28,7 @@ const pageTitle = "Tags"
         }
     </style>
     <div class="tags">
-        {uniqueTags.map((tag) => (
+        {tags.map((tag) => (
             <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
         ))}
     </div>
