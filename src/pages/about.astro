@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css'
-import BaseLayout from '../layouts/BaseLayout.astro';
-
+import BaseLayout from '../layouts/BaseLayout.astro'
 
 const pageTitle: string = "About Me"
 
@@ -35,7 +34,7 @@ const fontWeight = "bold";
 const textCase = "uppercase";
 ---
 
-<BaseLayout pageTitle={pageTitle} titleClassName="aboutTitle">
+<BaseLayout pageTitle={pageTitle}>
     <style define:vars={{skillColor, fontWeight, textCase}} slot="head">
       h1 {
         color: purple;
