@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPost from "../../components/BlogPost.astro";
+import { uniqueTags, filteredPosts } from "../../scripts/utils.astro";
+
+export async function getStaticPaths() {
+  return uniqueTags.map((tag) => ({ params: { tag }, props: { posts: filteredPosts(tag) } }));
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout pageTitle={`Tags | ${tag}`}>
+  <style slot="head">
+    h1 {
+      text-transform: capitalize;
+    }
+  </style>
+
+  <h1 slot="title">{tag}</h1>
+  <p>Posts tagged with {tag}</p>
+  <ul>
+    {posts.map(({url, frontmatter: { title }}) => url && <BlogPost url={url} title={title}/>)}
+  </ul>
+</BaseLayout>

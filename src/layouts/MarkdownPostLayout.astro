@@ -9,7 +9,8 @@ type Props = MarkdownLayoutProps<{
     image?: {
         url: string,
         alt?: string
-    }
+    },
+    tags: string[]
 }>
 
 export type { Props };
@@ -24,12 +25,36 @@ const formattedDate = Intl.DateTimeFormat('en-US', {
     month: 'long',
     day: 'numeric'
 }).format(date);
-
 ---
 
 <BaseLayout pageTitle={frontmatter.title} hasFooter={false}>
+    <style slot="head">
+        a {
+            color: #00539F;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            margin: 0.25em;
+            border: dotted 1px #a1a1a1;
+            border-radius: .5em;
+            padding: .5em 1em;
+            font-size: 1.15em;
+            background-color: #F8FCFD;
+        }
+    </style>
+
     <p>Written by {frontmatter.author}</p>
     <p>Published on {formattedDate}</p>
+    <div class="tags">
+        {frontmatter.tags.map((tag) => (
+            <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+        ))}
+    </div>
     <hr />
     {frontmatter.image?.url && <img src={frontmatter.image.url} width="300" alt={frontmatter.image?.alt} />}
     <slot />    
