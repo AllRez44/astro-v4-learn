@@ -5,6 +5,11 @@ html {
   font-family: 'Inter', sans-serif;
 }
 
+html.dark {
+  background-color: #0d0950;
+  color: #fff;
+}
+
 body {
   margin: 0 auto;
   width: 100%;
@@ -63,6 +68,10 @@ h1 {
 
 .expanded {
   display: unset;
+}
+
+.dark .nav-links a {
+  color: #fff;
 }
 
 @media screen and (min-width: 636px) {
