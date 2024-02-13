@@ -9,5 +9,5 @@ const {
 // https://astro.build/config
 export default defineConfig({
   site: APP_SITE,
-  integrations: [preact()]
+  integrations: [preact({ compat: true })]
 });
