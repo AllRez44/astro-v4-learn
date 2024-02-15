@@ -1,8 +1,7 @@
 ---
-import type { MarkdownInstance } from "astro";
 import { getCollection } from "astro:content";
 
-export interface BlogPost extends MarkdownInstance<Record<string, any>>{
+export interface BlogPost {
     id: string,
     url: string,
     title: string,
